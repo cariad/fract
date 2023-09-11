@@ -1,0 +1,6 @@
+__pycache__
+.coverage
+build
+coverage.xml
+docs/build
+fract.egg-info
