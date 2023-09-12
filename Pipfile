@@ -15,6 +15,7 @@ twine = "*"
 yamllint = "*"
 
 [packages]
+pypng = "~=0.20220715"
 
 [requires]
 python_version = "3.11"

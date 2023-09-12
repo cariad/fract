@@ -35,6 +35,9 @@ setup(
     classifiers=classifiers,
     description="Fractal image generator",
     include_package_data=True,
+    install_requires=[
+        "pypng~=0.20220715",
+    ],
     license="MIT",
     long_description=long_description,
     long_description_content_type="text/markdown",
