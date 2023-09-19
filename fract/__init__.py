@@ -1,7 +1,7 @@
-from fract.mandelbrot import render_mandelbrot
+from fract.mandelbrot import mandelbrot_calculator
 from fract.version_func import version
 
 __all__ = [
-    "render_mandelbrot",
+    "mandelbrot_calculator",
     "version",
 ]
