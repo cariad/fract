@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  codecov: codecov/codecov@3.2.3
-
 jobs:
   lint:
     docker:
@@ -31,8 +28,6 @@ jobs:
             - pipenv-
       - run: pipenv sync --dev
       - run: pipenv run test
-      - codecov/upload:
-          file: coverage.xml
 
   build:
     docker:

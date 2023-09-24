@@ -1,7 +1,5 @@
-# from logging import DEBUG
+from logging import INFO
 
-# from fract.logging import logger
+from fract.logging import logger
 
-# NOTE: Fract logs a *lot* a DEBUG, and it severely slows rendering. Enable
-# NOTE: debug logging during testing only when it's useful.
-# logger.setLevel(DEBUG)
+logger.setLevel(INFO)
