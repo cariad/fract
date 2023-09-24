@@ -19,13 +19,6 @@ def test_mandelbrot_calculator() -> None:
         calculator.enqueue(
             width,
             height,
-            docs / "bottom.png",
-            imaginary=1.4,
-        )
-
-        calculator.enqueue(
-            width,
-            height,
             docs / "down.png",
             imaginary=1,
         )
@@ -33,13 +26,15 @@ def test_mandelbrot_calculator() -> None:
         calculator.enqueue(
             width,
             height,
-            docs / "top.png",
-            imaginary=-1.4,
+            docs / "up.png",
+            imaginary=-1,
         )
 
         calculator.enqueue(
             width,
             height,
-            docs / "up.png",
-            imaginary=-1,
+            docs / "spike.png",
+            real=-7.512161027228863343638453051344657940828e-01,
+            imaginary=7.564322879586228138815367330951882912101e-02,
+            real_span=2.525954765394997575123068990514486572846e-02,
         )

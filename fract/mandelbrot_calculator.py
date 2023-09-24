@@ -104,14 +104,12 @@ class MandelbrotCalculator:
             logger.debug("Calculation worker %s now working on line %i", name, y)
 
             pixel_height = job["pixel_height"]
-            real_width = job["real_width"]
             main_real = job["min_real"]
-            imaginary_height = job["imaginary_height"]
             min_imaginary = job["min_imaginary"]
             max_iterations = job["max_iterations"]
             working_directory = job["working_directory"]
 
-            imaginary = min_imaginary + (y / pixel_height) * imaginary_height
+            imaginary = min_imaginary + (y / pixel_height) * job["imaginary_span"]
 
             pixel_width = job["pixel_width"]
 
@@ -121,7 +119,7 @@ class MandelbrotCalculator:
             with open(path, "wb") as f:
                 for x in range(pixel_width):
                     count = MandelbrotCalculator.count_iterations(
-                        main_real + (x / pixel_width) * real_width,
+                        main_real + (x / pixel_width) * job["real_span"],
                         imaginary,
                         max_iterations,
                     )
@@ -236,7 +234,7 @@ class MandelbrotCalculator:
         path: Path | str,
         real: float = -0.65,
         imaginary: float = 0.0,
-        real_width: float = 3.0,
+        real_span: float = 3.0,
         max_iterations: int = 1_000,
     ) -> None:
         working_directory = mkdtemp(dir=self._pool_working_directory)
@@ -249,17 +247,17 @@ class MandelbrotCalculator:
         )
 
         self._remaining[working_directory] = height
-        imaginary_height = real_width * (height / width)
+        imaginary_span = real_span * (height / width)
 
         for y in range(height):
             job = CalculationJob(
-                imaginary_height=imaginary_height,
-                min_imaginary=imaginary - (imaginary_height / 2),
-                min_real=real - (real_width / 2),
+                imaginary_span=imaginary_span,
+                min_imaginary=imaginary - (imaginary_span / 2),
+                min_real=real - (real_span / 2),
                 max_iterations=max_iterations,
                 pixel_height=height,
                 pixel_width=width,
-                real_width=real_width,
+                real_span=real_span,
                 working_directory=working_directory,
                 y=y,
             )
